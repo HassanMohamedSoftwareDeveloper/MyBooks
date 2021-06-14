@@ -60,3 +60,4 @@ D:\Study\Projects\MyBooks\MyBooks.MyBooks\obj\Debug\net5.0\MyBooks.MyBooks.dll
 D:\Study\Projects\MyBooks\MyBooks.MyBooks\obj\Debug\net5.0\ref\MyBooks.MyBooks.dll
 D:\Study\Projects\MyBooks\MyBooks.MyBooks\obj\Debug\net5.0\MyBooks.MyBooks.pdb
 D:\Study\Projects\MyBooks\MyBooks.MyBooks\obj\Debug\net5.0\MyBooks.MyBooks.genruntimeconfig.cache
+D:\Study\Projects\MyBooks\MyBooks.MyBooks\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Versioning.dll
