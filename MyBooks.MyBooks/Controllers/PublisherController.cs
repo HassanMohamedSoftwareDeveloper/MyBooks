@@ -4,6 +4,7 @@ using MyBooks.MyBooks.ActionResults;
 using MyBooks.MyBooks.Data.Models;
 using MyBooks.MyBooks.Data.Services;
 using MyBooks.MyBooks.Data.ViewModels;
+using MyBooks.MyBooks.Exceptions;
 
 namespace MyBooks.MyBooks.Controllers
 {
@@ -96,14 +97,33 @@ namespace MyBooks.MyBooks.Controllers
         [HttpPost("add-publisher")]
         public IActionResult AddPublisher([FromBody] PublisherVM publisher)
         {
-            publisherService.AddPublisher(publisher);
-            return Ok();
+            try
+            {
+                var newPublisher = publisherService.AddPublisher(publisher);
+                return Created(nameof(AddPublisher), newPublisher);
+            }
+            catch (PublisherNameException ex)
+            {
+                return BadRequest($"{ex.Message}, Publisher name: {ex.PublisherName}");
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpDelete("delete-publisher-by-id/{id}")]
         public IActionResult DeletePublisherById(int id)
         {
-            publisherService.DeletePublisherById(id);
-            return Ok();
+            try
+            {
+                publisherService.DeletePublisherById(id);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

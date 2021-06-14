@@ -1,8 +1,10 @@
 ﻿using MyBooks.MyBooks.Data.Models;
 using MyBooks.MyBooks.Data.Paging;
 using MyBooks.MyBooks.Data.ViewModels;
+using MyBooks.MyBooks.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MyBooks.MyBooks.Data.Services
 {
@@ -14,14 +16,18 @@ namespace MyBooks.MyBooks.Data.Services
         {
             this._appDbContext = appDbContext;
         }
-        public void AddPublisher(PublisherVM publisher)
+        public Publisher AddPublisher(PublisherVM publisher)
         {
+            if (StringStartWithNumber(publisher.Name)) 
+                throw new PublisherNameException("Name starts with number", publisher.Name);
+
             var _publisher = new Publisher
             {
                 Name = publisher.Name
             };
             _appDbContext.Publishers.Add(_publisher);
             _appDbContext.SaveChanges();
+            return _publisher;
         }
         public List<Publisher> GetAllPublishers(string sortBy,string searchString,int? pageNumber)
         {
@@ -68,11 +74,14 @@ namespace MyBooks.MyBooks.Data.Services
         public void DeletePublisherById(int publisherId)
         {
             var _publisher = _appDbContext.Publishers.FirstOrDefault(x => x.Id == publisherId);
-            if (_publisher != null)
-            {
-                _appDbContext.Publishers.Remove(_publisher);
-                _appDbContext.SaveChanges();
-            }
+            if (_publisher == null)
+                throw new System.Exception($"The publisher with id: {publisherId} does not exist");
+
+            _appDbContext.Publishers.Remove(_publisher);
+            _appDbContext.SaveChanges();
+
         }
+
+        private static bool StringStartWithNumber(string name) => Regex.IsMatch(name, @"^\d");
     }
 }

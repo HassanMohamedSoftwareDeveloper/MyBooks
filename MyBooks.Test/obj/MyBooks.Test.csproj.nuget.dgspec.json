@@ -4,14 +4,14 @@
     "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\MyBooks.Test.csproj": {}
   },
   "projects": {
-    "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\MyBooks.Test.csproj": {
+    "D:\\Study\\Projects\\MyBooks\\MyBooks.MyBooks\\MyBooks.MyBooks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\MyBooks.Test.csproj",
-        "projectName": "MyBooks.Test",
-        "projectPath": "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\MyBooks.Test.csproj",
+        "projectUniqueName": "D:\\Study\\Projects\\MyBooks\\MyBooks.MyBooks\\MyBooks.MyBooks.csproj",
+        "projectName": "MyBooks.MyBooks",
+        "projectPath": "D:\\Study\\Projects\\MyBooks\\MyBooks.MyBooks\\MyBooks.MyBooks.csproj",
         "packagesPath": "C:\\Users\\hassan.abdelfattah\\.nuget\\packages\\",
-        "outputPath": "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\obj\\",
+        "outputPath": "D:\\Study\\Projects\\MyBooks\\MyBooks.MyBooks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -44,6 +44,115 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Sinks.MSSqlServer": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\MyBooks.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\MyBooks.Test.csproj",
+        "projectName": "MyBooks.Test",
+        "projectPath": "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\MyBooks.Test.csproj",
+        "packagesPath": "C:\\Users\\hassan.abdelfattah\\.nuget\\packages\\",
+        "outputPath": "D:\\Study\\Projects\\MyBooks\\MyBooks.Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hassan.abdelfattah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://devops.tetco.sa/DefaultCollection/_packaging/tetco/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Study\\Projects\\MyBooks\\MyBooks.MyBooks\\MyBooks.MyBooks.csproj": {
+                "projectPath": "D:\\Study\\Projects\\MyBooks\\MyBooks.MyBooks\\MyBooks.MyBooks.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"

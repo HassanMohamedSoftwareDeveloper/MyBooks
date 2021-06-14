@@ -10,7 +10,7 @@ namespace MyBooks.MyBooks.Exceptions
 {
     public static class ExceptionMiddlewareExtension
     {
-        public static void ConfigureExceptionHandler(this IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public static void ConfigureBuildInExceptionHandler(this IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler(appError =>
             {
@@ -41,6 +41,10 @@ namespace MyBooks.MyBooks.Exceptions
 
                 });
             });
+        }
+        public static void ConfigureCustomExceptionHandler(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<CustomExceptionMiddleware>();
         }
     }
 }
