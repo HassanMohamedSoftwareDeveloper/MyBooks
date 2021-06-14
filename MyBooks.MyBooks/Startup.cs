@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MyBooks.MyBooks.Data;
 using MyBooks.MyBooks.Data.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MyBooks.MyBooks.Exceptions;
 
 namespace MyBooks.MyBooks
 {
@@ -40,6 +36,7 @@ namespace MyBooks.MyBooks
             services.AddTransient<BookService>();
             services.AddTransient<AuthorService>();
             services.AddTransient<PublisherService>();
+            services.AddTransient<LogsService>();
 
             services.AddApiVersioning(config=>
             {
@@ -57,7 +54,7 @@ namespace MyBooks.MyBooks
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -71,6 +68,8 @@ namespace MyBooks.MyBooks
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.ConfigureExceptionHandler(loggerFactory);
 
             app.UseEndpoints(endpoints =>
             {

@@ -28,13 +28,13 @@ namespace MyBooks.MyBooks.Data.Services
             var query = _appDbContext.Publishers.AsQueryable();
             if (!string.IsNullOrWhiteSpace(searchString))
             {
-                query = query.Where(x => x.Name.Contains(searchString,System.StringComparison.CurrentCultureIgnoreCase));
+                query = query.Where(x => x.Name.Contains(searchString, System.StringComparison.CurrentCultureIgnoreCase));
             }
-            switch (sortBy)
+            query = sortBy switch
             {
-                case "name desc": query.OrderByDescending(x => x.Name); break;
-                default: query.OrderBy(x => x.Name); break;
-            }
+                "name desc" => query.OrderByDescending(x => x.Name),
+                _ => query.OrderBy(x => x.Name),
+            };
 
             //Paging 
             int pageSize = 5;
