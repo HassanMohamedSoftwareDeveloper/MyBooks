@@ -16,6 +16,20 @@ namespace MyBooks.MyBooks.Controllers
         {
             this.publisherService = publisherService;
         }
+        [HttpGet("get-all-publishers")]
+        public IActionResult GetAllPublishers(string sortBy, string searchString, int? pageNumber)
+        {
+            try
+            {
+                var result = publisherService.GetAllPublishers(sortBy, searchString, pageNumber);
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest("Sorry,could not load publishers");
+            }
+        }
+
         [HttpGet("get-publisher-by-id/{id}")]
         public IActionResult GetPublisherById(int id)
         {

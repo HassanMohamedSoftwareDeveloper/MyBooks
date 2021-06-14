@@ -1,4 +1,5 @@
 ﻿using MyBooks.MyBooks.Data.Models;
+using MyBooks.MyBooks.Data.Paging;
 using MyBooks.MyBooks.Data.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace MyBooks.MyBooks.Data.Services
             _appDbContext.Publishers.Add(_publisher);
             _appDbContext.SaveChanges();
         }
-        public List<Publisher> GetAllPublishers(string sortBy,string searchString,int pageNumber)
+        public List<Publisher> GetAllPublishers(string sortBy,string searchString,int? pageNumber)
         {
             var query = _appDbContext.Publishers.AsQueryable();
             if (!string.IsNullOrWhiteSpace(searchString))
@@ -35,7 +36,9 @@ namespace MyBooks.MyBooks.Data.Services
                 default: query.OrderBy(x => x.Name); break;
             }
 
-            return query.ToList();
+            //Paging 
+            int pageSize = 5;
+            return PaginatedList<Publisher>.Create(query, pageNumber??1, pageSize);
         }
         public Publisher GetPublisherById(int publisherId) => _appDbContext.Publishers.FirstOrDefault(x => x.Id == publisherId);
         public PublisherWithBooksAndAuthorsVM GetPublisherData(int publisherId)
