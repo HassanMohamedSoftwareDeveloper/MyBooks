@@ -22,8 +22,22 @@ namespace MyBooks.MyBooks.Data.Services
             _appDbContext.Publishers.Add(_publisher);
             _appDbContext.SaveChanges();
         }
-        public List<Publisher> GetAllPublishers() => _appDbContext.Publishers.ToList();
-        public Publisher GetPublisherById(int publisherId) => _appDbContext.Publishers.FirstOrDefault(x=>x.Id==publisherId);
+        public List<Publisher> GetAllPublishers(string sortBy,string searchString,int pageNumber)
+        {
+            var query = _appDbContext.Publishers.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                query = query.Where(x => x.Name.Contains(searchString,System.StringComparison.CurrentCultureIgnoreCase));
+            }
+            switch (sortBy)
+            {
+                case "name desc": query.OrderByDescending(x => x.Name); break;
+                default: query.OrderBy(x => x.Name); break;
+            }
+
+            return query.ToList();
+        }
+        public Publisher GetPublisherById(int publisherId) => _appDbContext.Publishers.FirstOrDefault(x => x.Id == publisherId);
         public PublisherWithBooksAndAuthorsVM GetPublisherData(int publisherId)
         {
             var publisherData = _appDbContext.Publishers.Where(x => x.Id == publisherId)
